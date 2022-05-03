@@ -4,9 +4,9 @@ nombreTutor = () =>{
 } 
 nombreTutor()
 if(tutor != ""){
-    document.getElementById("parrafo").innerHTML = `<p style="font-size:30px; text-align: center;">
+    document.getElementById("parrafo").innerHTML = `<p style="font-size:30px; text-align: center; color:white;">
     <strong>Bienvenido ${tutor.toUpperCase()}
-    <p style="text-align: center;">Ingresa los datos de tus estudiantes<br><i style="font-size: 12px;">(Total de 15 clases, 10 desafios y 1 proyecto final)</i></p>`
+    <p style="text-align: center; color: white;">Ingresa los datos de tus estudiantes<br><i style="font-size: 15px;">(Total de 15 clases, 10 desafios y 1 proyecto final)</i></p>`
 }else{
     alert("DEBE INGRESAR SU NOMBRE")
     nombreTutor()

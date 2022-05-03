@@ -2,17 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap');
 
 body{
-    background-image: url(../assets/bg.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
     overflow-x: hidden;
-    background-color: rgb(131, 202, 250);
+    background-color: black;
     width: 100vw;
     font-family: 'Montserrat', sans-serif;
 }
 main{
-    background-color: rgba(240, 248, 255, 0.177);
-    margin: 20px;
+    background-image: url(../assets/bg-main.jpg);
+    background-color: rgba(255, 255, 255, 0.082);
+    margin: 0 20px 0 0 ;
     height: 100%;
     border-radius: 30px;
     padding: 20px;
@@ -25,8 +23,15 @@ main{
     justify-content: space-between;
     align-items: center;
 }
+header{
+    text-align: center;
+}
 h1{
-    padding: 10px;
+    display: inline;
+    color: rgb(191, 191, 191);
+    border-radius: 0 0 30px 30px;
+    background-color: rgba(113, 113, 113, 0.445);
+    padding: 10px 30px;
     text-align: center;
     font-family: 'Bangers', cursive;
     font-family: 'Montserrat', sans-serif;
