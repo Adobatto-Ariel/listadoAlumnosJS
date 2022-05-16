@@ -1,75 +1,104 @@
-let tutor
-nombreTutor = () =>{
-    tutor = prompt("Bienvenido TUTOR 👋\nIngrese su nombre:");
-} 
-nombreTutor()
-if(tutor != ""){
-    document.getElementById("parrafo").innerHTML = `<p style="font-size:30px; text-align: center; color:white;">
-    <strong>Bienvenido ${tutor.toUpperCase()}
-    <p style="text-align: center; color: white;">Ingresa los datos de tus estudiantes<br><i style="font-size: 15px;">(Total de 15 clases, 10 desafios y 1 proyecto final)</i></p>`
-}else{
-    alert("DEBE INGRESAR SU NOMBRE")
-    nombreTutor()
-}
-let contadorAlumnos=0;
-let boton = document.getElementById("agregar")
-boton.onclick = () =>{
-    function Alumno(nombre,asistencias,desafios,nota,puntos){
+let baseDatos = [];
+const listaAlumnos = document.querySelector('#lista-alumnos')
+const formulario = document.querySelector('#form')
+
+listaAlumnos.addEventListener('click', borrarAlumno)
+
+formulario.addEventListener('submit', capturarAlumno)
+
+function capturarAlumno(evt){
+    evt.preventDefault();
+    
+    function Alumno(nombre,asistencias,desafios,nota,puntos,id){
         this.nombre=nombre;
         this.asistencias=asistencias;
         this.desafios=desafios;
         this.nota=nota;
-        this.puntos=puntos;
+        this.puntos=puntos
+        this.id=id;
+
     }
-    let capturaNombre = document.getElementById("nombre").value;
-    let capturaNota = document.getElementById("nota").value;
-    let capturaAsist = document.getElementById("asistencias").value;
-    let capturaDesafios = document.getElementById("desafios").value;
+    
+    let capturaNombre = document.querySelector("#nombre").value.toUpperCase();
+    let capturaNota = document.querySelector("#nota").value;
+    let capturaAsist = document.querySelector("#asistencias").value;
+    let capturaDesafios = document.querySelector("#desafios").value;
     let puntos;
+    let id;
     if(capturaNombre !== "" && capturaNota !== "" && capturaAsist !== "" && capturaDesafios !== ""){
         if(capturaNota<=0 || capturaNota>10){
-            alert("Debe ingresar un nota entre 1 y 10")
+            mostrarError("Debe ingresar un nota entre 1 y 10")
         }else if(capturaAsist<0 || capturaAsist>15){
-                alert("Solo se puede registrar hasta 15 asistencias")
+                mostrarError("Solo se puede registrar hasta 15 asistencias")
             }else if(capturaDesafios<0 || capturaDesafios>10){
-                    alert("Solo se puede registrar hasta 10 entregas")
+                    mostrarError("Solo se puede registrar hasta 10 entregas")
                 }else{
+                    id = Date.now();
                     puntos = Number(capturaAsist) + Number(capturaDesafios) + Number(capturaNota);
-                    contadorAlumnos+=1;
                     let nuevoAlumno = new Alumno
-                    (capturaNombre,capturaAsist,capturaDesafios,capturaNota,puntos);
-                    agregarAlumno(nuevoAlumno);
+                    (capturaNombre,capturaAsist,capturaDesafios,capturaNota,puntos,id);
+                    baseDatos.push(nuevoAlumno);//Alumno: comentarioObj  baseDatos: comentarios
+                    console.log(baseDatos)
+                    renderHTML()
+                    formulario.reset()
                 }
     }else{
-        alert("DEBE COMPLETAR TODOS LOS CAMPOS")
+        mostrarError("DEBE COMPLETAR TODOS LOS CAMPOS");
+        return;
     }    
 }
-let baseDatos = [];
-function agregarAlumno(alumno){
-    baseDatos.push(alumno);
-    if(alumno.nota>=7){
-        document.getElementById("table").innerHTML += ` <tbody>
-        <td>${alumno.nombre.toUpperCase()}</td>
-        <td>${alumno.asistencias}</td>
-        <td>${alumno.desafios}</td>
-        <td>${alumno.nota}</td>
-        <td class="text-success">APROBADO</td>
-        <td>${alumno.puntos}</td>
-        </tbody>`;
-    }else{
-        document.getElementById("table").innerHTML+= `<tbody>
+
+/* --------------DATOS EN HTML----------------------- */
+function renderHTML(){
+    if(baseDatos.length>0){
+        limpiarHTML()
+        baseDatos.forEach(alumno => {
+            const btnBorrar = document.createElement('a');
+            btnBorrar.classList= "borrar-alumno";
+            btnBorrar.innerText = ' ❌'
+            btnBorrar.setAttribute('title','Eliminar')
+    
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
             <td>${alumno.nombre.toUpperCase()}</td>
             <td>${alumno.asistencias}</td>
             <td>${alumno.desafios}</td>
             <td>${alumno.nota}</td>
-            <td class="text-danger">DESAPROBADO</td>
-            <td>${alumno.puntos}</td>
-        </tbody>`;
+            <td>${alumno.puntos}</td>`
+            fila.appendChild(btnBorrar)
+            fila.dataset.alumnoId = alumno.id;
+            listaAlumnos.appendChild(fila)
+        })
+        syncroStorage();
     }
 }
+
+function syncroStorage(){
+    localStorage.setItem('alumnos', JSON.stringify(baseDatos))
+}
+
+function limpiarHTML(){
+    while(listaAlumnos.firstChild){
+        listaAlumnos.removeChild(listaAlumnos.firstChild)
+    }
+}
+
+function borrarAlumno(evt){
+    //console.log(evt.target.parentElement.dataset.alumnoId)
+    //console.log(baseDatos)
+    const idAlumno = evt.target.parentElement.dataset.alumnoId
+    baseDatos = baseDatos.filter( alumno => alumno.id != idAlumno)
+    //console.log(baseDatos)
+    renderHTML() // quitamos el alumno del html
+}
+
+
+
+/* ------------------ TOP3 ----------------------- */
+
 let top3 = document.getElementById("btn-top3")
 top3.onclick = () =>{
-    if(contadorAlumnos>3){
+    if(baseDatos.length>=3){
         baseDatos.sort((a,b) => {
         if (a.puntos < b.puntos){
             return 1;
@@ -82,8 +111,8 @@ top3.onclick = () =>{
         console.log(baseDatos)
         document.getElementById("tablaTop3").innerHTML= 
             `
-            <table class="table">
-            <thead>
+            <table class="table" id="tablaTOP">
+            <thead class="text-light">
             <tr>
                 <th scope="col">Posición</th>
                 <th scope="col">Nombre</th>
@@ -91,7 +120,7 @@ top3.onclick = () =>{
                 <th scope="col">Beneficio</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="text-light">
             <tr>
                 <th scope="row">1</th>
                 <td>${baseDatos[0].nombre.toUpperCase()}</td>
@@ -113,7 +142,27 @@ top3.onclick = () =>{
             </tbody>
         </table>` 
     } else{
-        alert("Debe ingresar al menos TRES alumnos para generar el TOP3")
+        mostrarError("Debe ingresar al menos TRES alumnos para generar el TOP3")
     }
-} 
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    baseDatos = JSON.parse(localStorage.getItem("alumnos")) || [];
+    console.log(baseDatos)
+    renderHTML()
+}) 
  
+/* ------- MENSAJE ERROR ---------------- */
+function mostrarError(error){
+    const msjError = document.createElement('p')
+    msjError.textContent = `✖ ${error} ❗❗`;
+    msjError.classList.add('msjError')
+
+    const contenido = document.querySelector('.contenido');
+    contenido.appendChild(msjError);
+
+    setTimeout(()=>{
+        msjError.remove()
+    }, 3000)
+}

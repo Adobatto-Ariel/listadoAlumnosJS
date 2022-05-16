@@ -1,72 +1,61 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap');
-
 body{
-    overflow-x: hidden;
-    background-color: black;
     width: 100vw;
-    font-family: 'Montserrat', sans-serif;
-}
-main{
-    background-image: url(../assets/bg-main.jpg);
-    background-color: rgba(255, 255, 255, 0.082);
-    margin: 0 20px 0 0 ;
-    height: 100%;
-    border-radius: 30px;
-    padding: 20px;
-    width: 100%;
-}
-.bloque1{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    height: 100vh;
+    color: white;
+    background-image: url('../assets/bg-js.jpg');
+    background-size: cover;
 }
 header{
-    text-align: center;
+    padding: 20px;
 }
 h1{
     display: inline;
-    color: rgb(191, 191, 191);
+    color: white;
     border-radius: 0 0 30px 30px;
-    background-color: rgba(113, 113, 113, 0.445);
-    padding: 10px 30px;
-    text-align: center;
-    font-family: 'Bangers', cursive;
-    font-family: 'Montserrat', sans-serif;
+    padding: 50px;
     letter-spacing: 2px;
-}
-p{
-    text-align: center;
-}
-h6{
-    color: rgb(0, 0, 0);
-    padding: 10px;
-    font-size: 180%;
-    text-align: center;
-}
-.ingreso{
-    margin: 0 auto;
-    max-width: 500px;
-    width: 80%;
 }
 #form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    background-color: rgba(131, 202, 250, 0.512);
     margin: 0 !important;
     padding: 20px !important;
-    border-radius: 30px 30px 0 0;
-    border: 1px solid white;
-    border-bottom: 0;
+}
+.botones{
+    width: 100%;
+}
+input{
+    background-color: black !important;
+    background-size: contain;
+}
+
+.ingreso{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: top;
+}
+#generaTop3{
+    display: grid;
+    grid-template-areas: 'texto tabla';
+    grid-template-columns: 40% auto;
+    gap: 40px;
+    border-top: 1px solid rgb(212, 212, 212);
+    margin-top: 30px;
+    padding: 30px;
+}
+.top3-p-btn{
+    grid-area: texto;
+}
+.top3-tabla{
+    grid-area: tabla;
 }
 .selects{
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px 0;
@@ -77,47 +66,47 @@ h6{
 th, td{
     text-align: center;
 }
-.botones{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-.container{
-    max-width: 700px;
-    width: 90%;
-}
+
 .tablas{
-    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     margin: 0 30px;
-    border-radius: 20px;
 }
-#generaTop3{
-    padding: 10px;
-    border-radius: 30px;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 1s;
+
+.textoTop3{ 
+    padding-top: 10px;
 }
-#generaTop3:hover{
-    background-color: white;
+.textoTop3 strong{
+    display: block;
 }
-.spanTop3, .datosCurso{
-    font-style: italic;
-    font-size: 14px;
-    color: rgb(39, 39, 39);
+.msjError{
+    background-color: rgb(255, 0, 0);
     text-align: center;
-    width: 70%;
-    padding: 20px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    max-width: 400px;
+    margin: 20px auto 0;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    border: 5px inset rgba(111, 8, 8, 0.355);
 }
-.spanTop3{
-    border-top: 1px solid rgb(212, 212, 212);
-    padding-top: 5px;
+#tablaTOP, #table{
+    background-color: rgba(0, 0, 0, 0.371);
+    border-radius: 10px;
+}
+.borrar-alumno{
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: transparent !important;
+    margin: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.borrar-alumno:hover{
+    background-color: rgba(255, 255, 255, 0.074) !important;
 
 }
-

@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./css/style.css" />
+
     <title>Document</title>
   </head>
   <body>
@@ -21,83 +22,88 @@
       <section class="bloque1">
         <div id="parrafo" class="w-50"></div>
         <div class="ingreso">
-          <form class="p-3 ps-0" id="form">
-            <input
-              id="nombre"
-              type="text"
-              placeholder="Ingresa nombre del alumno/a"
-              class="form-control my-2"
-              required
-            />
-            <input
-              id="nota"
-              type="number"
-              placeholder="Ingresa nota del PROYECTO FINAL"
-              class="form-control my-2"
-              required
-            />
+          <form class="p-3 ps-0 contenido w-50" id="form">
+            <div class="w-100">
+              <input
+                id="nombre"
+                type="text"
+                placeholder="Ingresa nombre del alumno/a"
+                class="form-control my-2 text-light"
+              />
+            </div>
+            <div class="w-100">
+              <input
+                id="nota"
+                type="number"
+                placeholder="Ingresa nota del PROYECTO FINAL"
+                class="form-control my-2 text-light"
+              />
+            </div>
             <div class="selects">
-              <div class="asistencias me-2">
+              <div class="asistencias w-100">
                 <label for="asistencias" class="mx-2">Asistencias:</label>
                 <input
-                  class="form-control my-2"
+                  class="form-control my-2 text-light"
                   type="number"
                   id="asistencias"
-                  max="15"
-                  min="0"
                 />
               </div>
-              <div class="desafios">
+              <div class="desafios w-100">
                 <label for="desafios" class="mx-2">Desafios entregados:</label>
                 <input
-                  class="form-control my-2 m"
+                  class="form-control my-2 text-light"
                   type="number"
                   id="desafios"
-                  max="10"
-                  min="0"
                 />
               </div>
             </div>
             <div class="botones">
-              <button
-                id="agregar"
-                class="btn btn-success w-100 mx-1"
-                type="reset"
-              >
+              <button id="agregar" class="btn btn-success w-100" type="submit">
                 Agregar
               </button>
             </div>
           </form>
+          <div class="logo">
+            <img src="./assets/logo.png" alt="logo" />
+          </div>
         </div>
       </section>
       <section class="tablas">
-        <div class="container">
+        <div class="container-fluid">
           <table class="table" id="table">
-            <thead class="thead-inverse bg-transparent text-dark">
+            <thead class="thead-inverse bg-transparent text-light">
               <tr>
-                <th class="w-25">Nombre</th>
+                <th>Nombre</th>
                 <th>Asistencias</th>
-                <th>Desafios</th>
+                <th>Desafios entregados</th>
                 <th>Nota Proyecto</th>
-                <th>Estado</th>
                 <th>Puntos</th>
               </tr>
             </thead>
+            <tbody id="lista-alumnos" class="text-light"></tbody>
           </table>
         </div>
         <div id="generaTop3">
-          <span class="spanTop3"
-            ><strong
-              >Te brindamos la posibilidad de GENERAR UN TOP 3 de tus
-              alumnos.</strong
-            ><br />
-            Para ello sumaremos la cantidad de asistencias, entregas y nota del
-            Proyecto final (DEBER ESTAR APROBADO)</span
-          >
-          <button id="btn-top3" class="btn btn-primary mt-3" type="button">
-            Generar TOP 3
-          </button>
-          <div id="tablaTop3"></div>
+          <div class="top3-p-btn">
+            <p class="textoTop3">
+              <strong
+                >Te brindamos la posibilidad de GENERAR UN TOP 3 de tus
+                alumnos.</strong
+              >
+              Para ello sumaremos la cantidad de asistencias, entregas y nota
+              del Proyecto final (DEBER ESTAR APROBADO)
+            </p>
+            <button
+              id="btn-top3"
+              class="btn btn-primary mt-1 w-100"
+              type="button"
+            >
+              Generar TOP 3
+            </button>
+          </div>
+          <div class="top3-tabla">
+            <div id="tablaTop3"></div>
+          </div>
         </div>
       </section>
     </main>
