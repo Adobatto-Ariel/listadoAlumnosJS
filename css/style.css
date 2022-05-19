@@ -1,20 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     width: 100vw;
     height: 100vh;
     color: white;
-    background-image: url('../assets/bg-js.jpg');
-    background-size: cover;
+    background-color: #1f2023;
 }
 header{
+    text-align: left;
+    height: 100px;
+   /*  position: relative; */
+    background-color: #27282d;
+    border: solid 2px #333;
+    border-left: none;
+    border-right: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo{
+    width: 200px;
+    height: 150px;
     padding: 20px;
+}
+.logo img{
+    width: 100%;
+    height: 100%;
+}
+main{
+    padding-top: 60px;
+    background-color: #1f2023;
+    width: 80%;
+    margin: 0 auto;
 }
 h1{
     display: inline;
     color: white;
-    border-radius: 0 0 30px 30px;
-    padding: 50px;
+    font-family: 'Anton', sans-serif;
     letter-spacing: 2px;
+    padding: 15px 30px;
 }
+.card {
+    margin: 0 auto;
+    width: 90%;
+    background-color: #212121;
+    box-shadow: 10px 10px 25px #262626,
+                 -10px -10px 25px #363636;
+}
+   
 #form{
     display: flex;
     flex-direction: column;
@@ -27,15 +65,20 @@ h1{
     width: 100%;
 }
 input{
-    background-color: black !important;
-    background-size: contain;
+    background-color: #27282d !important;
 }
 
 .ingreso{
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-around;
     align-items: top;
+}
+.parrafo{
+    width: 50%;
+    height: 100%;
+    padding: 30px;
+    text-align: right;
 }
 #generaTop3{
     display: grid;
@@ -91,22 +134,23 @@ th, td{
     border: 5px inset rgba(111, 8, 8, 0.355);
 }
 #tablaTOP, #table{
-    background-color: rgba(0, 0, 0, 0.371);
+    background-color: #212529;
     border-radius: 10px;
 }
 .borrar-alumno{
     display: inline-block;
     text-decoration: none;
-    width: 100%;
+    width: 75%;
     height: 100%;
     text-align: center;
     background-color: transparent !important;
-    margin: 3px;
+    margin: 3px 5px;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s;
+    border: solid 1px rgb(103, 103, 103);
 }
 .borrar-alumno:hover{
-    background-color: rgba(255, 255, 255, 0.074) !important;
+    border: solid 1px red;
 
 }

@@ -1,4 +1,5 @@
 let baseDatos = [];
+let alumnosTop = [];
 const listaAlumnos = document.querySelector('#lista-alumnos')
 const formulario = document.querySelector('#form')
 
@@ -8,15 +9,17 @@ formulario.addEventListener('submit', capturarAlumno)
 
 function capturarAlumno(evt){
     evt.preventDefault();
-    
-    function Alumno(nombre,asistencias,desafios,nota,puntos,id){
-        this.nombre=nombre;
-        this.asistencias=asistencias;
-        this.desafios=desafios;
-        this.nota=nota;
-        this.puntos=puntos
-        this.id=id;
 
+    class Alumno {
+        constructor(nombre, asistencias, desafios, nota, puntos, id) {
+            this.nombre = nombre;
+            this.asistencias = asistencias;
+            this.desafios = desafios;
+            this.nota = nota;
+            this.puntos = puntos;
+            this.id = id;
+
+        }
     }
     
     let capturaNombre = document.querySelector("#nombre").value.toUpperCase();
@@ -34,28 +37,37 @@ function capturarAlumno(evt){
                     mostrarError("Solo se puede registrar hasta 10 entregas")
                 }else{
                     id = Date.now();
+                    
                     puntos = Number(capturaAsist) + Number(capturaDesafios) + Number(capturaNota);
+                    
                     let nuevoAlumno = new Alumno
                     (capturaNombre,capturaAsist,capturaDesafios,capturaNota,puntos,id);
-                    baseDatos.push(nuevoAlumno);//Alumno: comentarioObj  baseDatos: comentarios
+                    
+                    baseDatos.push(nuevoAlumno)
+                    
+                    (capturaNota>=7) && alumnosTop.push(nuevoAlumno);
+                    
                     console.log(baseDatos)
+                    console.log(alumnosTop)
+                    
                     renderHTML()
                     formulario.reset()
                 }
     }else{
         mostrarError("DEBE COMPLETAR TODOS LOS CAMPOS");
+
         return;
     }    
 }
 
 /* --------------DATOS EN HTML----------------------- */
 function renderHTML(){
-    if(baseDatos.length>0){
+    (baseDatos.length>=0) && 
         limpiarHTML()
         baseDatos.forEach(alumno => {
             const btnBorrar = document.createElement('a');
             btnBorrar.classList= "borrar-alumno";
-            btnBorrar.innerText = ' ❌'
+            btnBorrar.innerText = '❌'
             btnBorrar.setAttribute('title','Eliminar')
     
             const fila = document.createElement('tr');
@@ -70,11 +82,13 @@ function renderHTML(){
             listaAlumnos.appendChild(fila)
         })
         syncroStorage();
-    }
+    
 }
 
 function syncroStorage(){
     localStorage.setItem('alumnos', JSON.stringify(baseDatos))
+    localStorage.setItem('alumnosTop', JSON.stringify(alumnosTop))
+
 }
 
 function limpiarHTML(){
@@ -84,22 +98,23 @@ function limpiarHTML(){
 }
 
 function borrarAlumno(evt){
-    //console.log(evt.target.parentElement.dataset.alumnoId)
-    //console.log(baseDatos)
     const idAlumno = evt.target.parentElement.dataset.alumnoId
     baseDatos = baseDatos.filter( alumno => alumno.id != idAlumno)
-    //console.log(baseDatos)
-    renderHTML() // quitamos el alumno del html
+    alumnosTop = alumnosTop.filter( alumno => alumno.id != idAlumno)
+    
+    renderHTML()
+    console.log(baseDatos)
+    console.log(alumnosTop)
+    
 }
-
-
 
 /* ------------------ TOP3 ----------------------- */
 
 let top3 = document.getElementById("btn-top3")
+
 top3.onclick = () =>{
-    if(baseDatos.length>=3){
-        baseDatos.sort((a,b) => {
+    if(alumnosTop.length>=3){
+        alumnosTop.sort((a,b) => {
         if (a.puntos < b.puntos){
             return 1;
         }
@@ -108,8 +123,9 @@ top3.onclick = () =>{
         }
         return 0;
         });
-        console.log(baseDatos)
-        document.getElementById("tablaTop3").innerHTML= 
+        console.log(alumnosTop)
+        let tablaAlumnosTop = document.getElementById("tablaTop3");
+        tablaAlumnosTop.innerHTML= 
             `
             <table class="table" id="tablaTOP">
             <thead class="text-light">
@@ -123,46 +139,62 @@ top3.onclick = () =>{
             <tbody class="text-light">
             <tr>
                 <th scope="row">1</th>
-                <td>${baseDatos[0].nombre.toUpperCase()}</td>
-                <td>${baseDatos[0].puntos}</td>
+                <td>${alumnosTop[0].nombre.toUpperCase()}</td>
+                <td>${alumnosTop[0].puntos}</td>
                 <td>50%OFF en Cursos</td>
             </tr>
             <tr>
                 <th scope="row">2</th>
-                <td>${baseDatos[1].nombre.toUpperCase()}</td>
-                <td>${baseDatos[1].puntos}</td>
+                <td>${alumnosTop[1].nombre.toUpperCase()}</td>
+                <td>${alumnosTop[1].puntos}</td>
                 <td>30%OFF en Cursos</td>
             </tr>
             <tr>
                 <th scope="row">3</th>
-                <td>${baseDatos[2].nombre.toUpperCase()}</td>
-                <td>${baseDatos[2].puntos}</td>
+                <td>${alumnosTop[2].nombre.toUpperCase()}</td>
+                <td>${alumnosTop[2].puntos}</td>
                 <td>15%OFF en Cursos</td>
             </tr>
             </tbody>
         </table>` 
     } else{
-        mostrarError("Debe ingresar al menos TRES alumnos para generar el TOP3")
+        mostrarError("Debe haber al menos TRES alumnos  con nota de proyecto APROBADO")
     }
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    baseDatos = JSON.parse(localStorage.getItem("alumnos")) || [];
-    console.log(baseDatos)
-    renderHTML()
-}) 
- 
+
 /* ------- MENSAJE ERROR ---------------- */
 function mostrarError(error){
-    const msjError = document.createElement('p')
-    msjError.textContent = `✖ ${error} ❗❗`;
-    msjError.classList.add('msjError')
-
-    const contenido = document.querySelector('.contenido');
-    contenido.appendChild(msjError);
-
-    setTimeout(()=>{
-        msjError.remove()
-    }, 3000)
+    Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        width: 450,
+        color: '#fff',
+        background: 'rgba(255, 0, 0, 0.795)',
+        text: error.toUpperCase(),
+        timer: 4000,
+    })
 }
+function msjEliminado(alumno){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        width: 300,
+        title: `Agregado ${alumno}`,
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+
+/* ------------------------------------------ */
+
+document.addEventListener("DOMContentLoaded", () => {
+    baseDatos = JSON.parse(localStorage.getItem("alumnos")) || [];
+    alumnosTop = JSON.parse(localStorage.getItem("alumnosTop")) || [];
+    console.log(baseDatos)
+    console.log(alumnosTop)
+
+    renderHTML()
+}) 

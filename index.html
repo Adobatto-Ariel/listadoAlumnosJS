@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      rel="shortcut icon"
+      href="./assets/favicon.png"
+      type="image/x-icon"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
@@ -12,22 +17,24 @@
     />
     <link rel="stylesheet" href="./css/style.css" />
 
-    <title>Document</title>
+    <title>ADOBATTO JS</title>
   </head>
   <body>
     <header>
       <h1>REGISTRO FINAL DE CURSADA</h1>
+      <div class="logo">
+        <img src="./assets/logo.png" alt="logo" />
+      </div>
     </header>
     <main>
-      <section class="bloque1">
-        <div id="parrafo" class="w-50"></div>
+      <section class="card">
         <div class="ingreso">
-          <form class="p-3 ps-0 contenido w-50" id="form">
+          <form class="p-3 ps-0 contenido w-50 form-dark" id="form">
             <div class="w-100">
               <input
                 id="nombre"
                 type="text"
-                placeholder="Ingresa nombre del alumno/a"
+                placeholder="Nombre del alumno/a"
                 class="form-control my-2 text-light"
               />
             </div>
@@ -35,7 +42,7 @@
               <input
                 id="nota"
                 type="number"
-                placeholder="Ingresa nota del PROYECTO FINAL"
+                placeholder="Nota del PROYECTO FINAL"
                 class="form-control my-2 text-light"
               />
             </div>
@@ -63,14 +70,23 @@
               </button>
             </div>
           </form>
-          <div class="logo">
-            <img src="./assets/logo.png" alt="logo" />
+          <div class="parrafo">
+            <h6>BIENVENIDO!!</h6>
+            <p>
+             Aquí podrás ingresar los datos de tus estudiante.
+            </p>
+            <p>Recordá que el curso tuvo un total de:
+              <ul type="none">
+                <li>15 clases ✔</li>
+                <li>10 desafios entregables ✔</li>
+            </ul>
+            </p>
           </div>
         </div>
       </section>
       <section class="tablas">
         <div class="container-fluid">
-          <table class="table" id="table">
+          <table class="table table-dark table-striped" id="table">
             <thead class="thead-inverse bg-transparent text-light">
               <tr>
                 <th>Nombre</th>
@@ -119,5 +135,6 @@
       integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
       crossorigin="anonymous"
     ></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
 </html>
