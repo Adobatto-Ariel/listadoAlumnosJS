@@ -18,7 +18,6 @@ function capturarAlumno(evt){
             this.nota = nota;
             this.puntos = puntos;
             this.id = id;
-
         }
     }
     
@@ -43,7 +42,7 @@ function capturarAlumno(evt){
                     let nuevoAlumno = new Alumno
                     (capturaNombre,capturaAsist,capturaDesafios,capturaNota,puntos,id);
                     
-                    baseDatos.push(nuevoAlumno)
+                    baseDatos.push(nuevoAlumno);
                     
                     (capturaNota>=7) && alumnosTop.push(nuevoAlumno);
                     
