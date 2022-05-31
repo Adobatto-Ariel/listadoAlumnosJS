@@ -21,9 +21,18 @@
   </head>
   <body>
     <header>
-      <h1>REGISTRO FINAL DE CURSADA</h1>
       <div class="logo">
         <img src="./assets/logo.png" alt="logo" />
+        <span class="nombreLogo">ADOBATTO ARIEL</span>
+      </div>
+      <h1>REGISTRO FINAL DE CURSADA</h1>
+      <div class="botonDark">
+        <button class="learn-more" id="darkMode">
+          <span class="circle" aria-hidden="true">
+          <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Light</span>
+        </button>
       </div>
     </header>
     <main>
@@ -31,26 +40,26 @@
         <div class="ingreso">
           <form class="p-3 ps-0 contenido w-50 form-dark" id="form">
             <div class="w-100">
+              <label for="nombre" class="mx-2">Nombre del alumno/a:</label>
               <input
                 id="nombre"
                 type="text"
-                placeholder="Nombre del alumno/a"
-                class="form-control my-2 text-light"
+                class="form-control my-2 text-dark"
               />
             </div>
             <div class="w-100">
+              <label for="nota" class="mx-2">Nota del PROYECTO FINAL:</label>
               <input
                 id="nota"
                 type="number"
-                placeholder="Nota del PROYECTO FINAL"
-                class="form-control my-2 text-light"
+                class="form-control my-2 text-dark"
               />
             </div>
             <div class="selects">
               <div class="asistencias w-100">
                 <label for="asistencias" class="mx-2">Asistencias:</label>
                 <input
-                  class="form-control my-2 text-light"
+                  class="form-control my-2 text-dark"
                   type="number"
                   id="asistencias"
                 />
@@ -58,7 +67,7 @@
               <div class="desafios w-100">
                 <label for="desafios" class="mx-2">Desafios entregados:</label>
                 <input
-                  class="form-control my-2 text-light"
+                  class="form-control my-2 text-dark"
                   type="number"
                   id="desafios"
                 />
@@ -85,10 +94,10 @@
         </div>
       </section>
       <section class="tablas">
-        <div class="container-fluid">
-          <table class="table table-dark table-striped" id="table">
-            <thead class="thead-inverse bg-transparent text-light">
-              <tr>
+        <div class="container-fluid mt-5">
+          <table id="table">
+            <thead>
+              <tr class="thead">
                 <th>Nombre</th>
                 <th>Asistencias</th>
                 <th>Desafios entregados</th>
@@ -96,7 +105,7 @@
                 <th>Puntos</th>
               </tr>
             </thead>
-            <tbody id="lista-alumnos" class="text-light"></tbody>
+            <tbody id="lista-alumnos"></tbody>
           </table>
         </div>
         <div id="generaTop3">
@@ -123,7 +132,13 @@
         </div>
       </section>
     </main>
-
+    <footer class="p-5">
+      <div id="autoridades" class="text-center mx-5"></div>
+      <div>
+        <p>En CoderAcademy valoramos el esfuerzo y dedicación de nuestros alumnos</p>
+        <strong>Accede a nuestros descuentos de hasta el 50% en cursos de programación!</strong>
+      </div>
+    </footer>
     <script src="./js/main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
