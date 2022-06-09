@@ -48,8 +48,9 @@ header {
 .nombreLogo {
   position: absolute;
   left: 12%;
-  bottom: 20%;
+  bottom: 45%;
   font-size: 1.2rem;
+  font-family: serif;
 }
 main {
   padding-top: 60px;
@@ -86,21 +87,30 @@ h1 {
   align-items: flex-start;
   margin: 0 !important;
   padding: 20px !important;
+  min-width: 375px;
 }
 .botones {
   width: 100%;
 }
+.primerBloque {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
 .ingreso {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-around;
   align-items: top;
+  flex-wrap: wrap;
 }
 .parrafo {
   width: 50%;
   height: 100%;
   padding: 30px;
   text-align: right;
+  min-width: 375px;
 }
 #generaTop3 {
   display: grid;
@@ -189,6 +199,10 @@ th {
 }
 input {
   color: black !important;
+}
+input:focus {
+  transition: 0.8s;
+  transform: scale(1.1);
 }
 .textoTop3 {
   padding-top: 10px;
@@ -321,9 +335,15 @@ footer {
   border-right: none;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  padding: 15px 0;
+  padding: 15px;
+}
+footer p {
+  text-align: right;
+}
+footer h3 {
+  font-family: "Anton", sans-serif;
 }
 .footerLight {
   background-color: #f3f3f3;
@@ -334,7 +354,8 @@ footer {
   border-top: solid 2px #333;
 }
 #autoridades {
-  border: 3px solid white;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 10px 20px;
+  background-color: #2323231c;
+  box-shadow: 10px 10px 25px #515151, 2px 2px 5px #838383;
 }

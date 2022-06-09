@@ -25,7 +25,7 @@
         <img src="./assets/logo.png" alt="logo" />
         <span class="nombreLogo">ADOBATTO ARIEL</span>
       </div>
-      <h1>REGISTRO FINAL DE CURSADA</h1>
+      <h1 class="fst-italic fs-1">CODER ACADEMY</h1>
       <div class="botonDark">
         <button class="learn-more" id="darkMode">
           <span class="circle" aria-hidden="true">
@@ -36,63 +36,68 @@
       </div>
     </header>
     <main>
-      <section class="card">
-        <div class="ingreso">
-          <form class="p-3 ps-0 contenido w-50 form-dark" id="form">
-            <div class="w-100">
-              <label for="nombre" class="mx-2">Nombre del alumno/a:</label>
-              <input
-                id="nombre"
-                type="text"
-                class="form-control my-2 text-dark"
-              />
+      <div class="primerBloque">
+        <section class="card">
+          <div class="ingreso">
+            <div class="parrafo">
+              <h5>REGISTRO FINAL DE CURSADA</h5>
+              <h6>BIENVENIDO!!</h6>
+              <p>
+               Aquí podrás ingresar los datos de tus estudiante.
+              </p>
+              <p>Recordá que el curso tuvo un total de:
+                <ul type="none">
+                  <li>15 clases ✔</li>
+                  <li>10 desafios entregables ✔</li>
+                </ul>
+              </p>
             </div>
-            <div class="w-100">
-              <label for="nota" class="mx-2">Nota del PROYECTO FINAL:</label>
-              <input
-                id="nota"
-                type="number"
-                class="form-control my-2 text-dark"
-              />
-            </div>
-            <div class="selects">
-              <div class="asistencias w-100">
-                <label for="asistencias" class="mx-2">Asistencias:</label>
+            <form class="p-3 ps-0 contenido w-50 form-dark" id="form">
+              <div class="w-100">
+                <label for="nombre" class="mx-2">Nombre del alumno/a:</label>
                 <input
+                  id="nombre"
+                  type="text"
                   class="form-control my-2 text-dark"
-                  type="number"
-                  id="asistencias"
                 />
               </div>
-              <div class="desafios w-100">
-                <label for="desafios" class="mx-2">Desafios entregados:</label>
+              <div class="w-100">
+                <label for="nota" class="mx-2">Nota del PROYECTO FINAL:</label>
                 <input
-                  class="form-control my-2 text-dark"
+                  id="nota"
                   type="number"
-                  id="desafios"
+                  class="form-control my-2 text-dark"
                 />
               </div>
-            </div>
-            <div class="botones">
-              <button id="agregar" class="btn btn-success w-100" type="submit">
-                Agregar
-              </button>
-            </div>
-          </form>
-          <div class="parrafo">
-            <h6>BIENVENIDO!!</h6>
-            <p>
-             Aquí podrás ingresar los datos de tus estudiante.
-            </p>
-            <p>Recordá que el curso tuvo un total de:
-              <ul type="none">
-                <li>15 clases ✔</li>
-                <li>10 desafios entregables ✔</li>
-            </ul>
-            </p>
+              <div class="selects">
+                <div class="asistencias w-100">
+                  <label for="asistencias" class="mx-2">Asistencias:</label>
+                  <input
+                    class="form-control my-2 text-dark"
+                    type="number"
+                    id="asistencias"
+                  />
+                </div>
+                <div class="desafios w-100">
+                  <label for="desafios" class="mx-2">Desafios entregados:</label>
+                  <input
+                    class="form-control my-2 text-dark"
+                    type="number"
+                    id="desafios"
+                  />
+                </div>
+              </div>
+              <div class="botones">
+                <button id="agregar" class="btn btn-success w-100" type="submit">
+                  Agregar
+                </button>
+              </div>
+            </form>
+            
           </div>
-        </div>
-      </section>
+        </section>
+        <div id="autoridades" class="text-center mx-5"></div>
+      </div>
       <section class="tablas">
         <div class="container-fluid mt-5">
           <table id="table">
@@ -133,13 +138,13 @@
       </section>
     </main>
     <footer class="p-5">
-      <div id="autoridades" class="text-center mx-5"></div>
-      <div>
-        <p>En CoderAcademy valoramos el esfuerzo y dedicación de nuestros alumnos</p>
-        <strong>Accede a nuestros descuentos de hasta el 50% en cursos de programación!</strong>
+      <h3 class="fst-italic">CODER ACADEMY</h3>
+      <div class="px-5 mx-5 w-50">
+        <p class="fst-italic">Valoramos el esfuerzo y dedicación de nuestros alumnos. <strong>Accede a nuestros descuentos de hasta el 50% en cursos de programación!</strong></p>
+        
       </div>
     </footer>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
