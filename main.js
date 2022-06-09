@@ -11,7 +11,10 @@ import { avatarTOP } from "./modules/fetch.js";
 import { renderTop3 } from "./modules/topTres.js";
 
 /* =========================================== */
-
+avatarTOP();
+setInterval(() => {
+  avatarTOP();
+}, 7000);
 let baseDatos = [];
 export let alumnosTop = [];
 const listaAlumnos = document.querySelector("#lista-alumnos");
@@ -108,7 +111,6 @@ function renderHTML() {
     listaAlumnos.appendChild(fila);
   });
   syncroStorage();
-  avatarTOP();
 }
 
 function syncroStorage() {

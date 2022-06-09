@@ -11,6 +11,9 @@ export function avatarTOP() {
       <p class=" fst-italic">Estudiante de Coder Academy</p>
       <img src="${foto}" width="120px" class="img-fluid rounded-circle">
       <p class="fst-italic">${nombre} ${apellido}</p>
+      <p class="fst-italic">"CODER ACADEMY<br>me cambio la vida"</p>
+      <span>⭐⭐⭐⭐⭐</span>
+
       `;
     })
     .catch(function (err) {
